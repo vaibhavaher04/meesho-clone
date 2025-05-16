@@ -1,0 +1,366 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meesho Clone</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Vaibhav Aher Contribution -->
+
+  <header>
+    <div class="navbar" role="navigation" aria-label="Primary Navigation">
+      <div class="logo">
+        <img src="meeshoLogo.svg" alt="Meesho Logo" />
+      </div>
+      <div class="search-bar" role="search">
+        <input id="search-input" type="text" placeholder="Try Saree, Kurti or Search by Product Code" aria-label="Search products" autocomplete="off" />
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <div class="search-suggestions" id="search-suggestions" role="list" aria-label="Popular search tags">
+          <span role="listitem" tabindex="0">saree</span>
+          <span role="listitem" tabindex="0">tshirt</span>
+          <span role="listitem" tabindex="0">short kurti</span>
+          <span role="listitem" tabindex="0">kurti</span>
+          <span role="listitem" tabindex="0">top for women</span>
+          <span role="listitem" tabindex="0">earring</span>
+          <span role="listitem" tabindex="0">watch</span>
+          <span role="listitem" tabindex="0">top</span>
+          <span role="listitem" tabindex="0">shoes</span>
+          <span role="listitem" tabindex="0">bangle</span>
+          <span role="listitem" tabindex="0">kurti set</span>
+          <span role="listitem" tabindex="0">water bottle</span>
+          <span role="listitem" tabindex="0">blouse</span>
+          <span role="listitem" tabindex="0">palazzo</span>
+          <span role="listitem" tabindex="0">cotton saree</span>
+          <span role="listitem" tabindex="0">slipper</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <div class="dropdown" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="Become a Supplier menu">
+          <a href="#" tabindex="-1"><span>Become a Supplier</span></a>
+          <div class="dropdown-content" role="menu" aria-hidden="true">
+            <a href="#" role="menuitem" tabindex="-1">Supplier Panel</a>
+            <a href="#" role="menuitem" tabindex="-1">Learn More</a>
+          </div>
+        </div>
+        <a href="#" class="nav-link" tabindex="0"><span>Investor Relations</span></a>
+        <div class="profile" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="Profile menu">
+          <a href="#" class="nav-link" tabindex="-1"><i class="far fa-user" aria-hidden="true"></i> <span>Profile</span></a>
+          <div class="profile-dropdown" role="menu" aria-hidden="true">
+            <h4>Hello User</h4>
+            <p>To access your Meesho account</p>
+            <button class="signup-btn" type="button">Sign Up</button>
+            <button class="orders-btn" type="button">My Orders</button>
+            <button class="delete-btn" type="button">Delete Account</button>
+          </div>
+        </div>
+        <a href="#" class="nav-link cart" tabindex="0"><i class="fas fa-shopping-cart" aria-hidden="true"></i> <span>Cart</span></a>
+      </div>
+      <div class="mobile-menu" aria-label="Mobile menu toggle" role="button" tabindex="0" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <nav class="category-nav" role="menubar" aria-label="Product Categories">
+      <a href="#" role="menuitem" tabindex="0" data-category="women-ethnic">Women Ethnic</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="women-western">Women Western</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="men">Men</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="kids">Kids</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="home-kitchen">Home & Kitchen</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="beauty-health">Beauty & Health</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="jewellery-accessories">Jewellery & Accessories</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="bags-footwear">Bags & Footwear</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="electronics">Electronics</a>
+      <a href="#" role="menuitem" tabindex="0" data-category="sports">Sports</a>
+    </nav>
+
+    <!-- Mega menus for categories -->
+    <div id="mega-menu-container" aria-label="Category Submenu" aria-hidden="true" style="position: relative; max-width: 1200px; margin: 0 auto;">
+      <!-- Women Ethnic -->
+      <div class="mega-menu" data-category="women-ethnic" role="region" aria-labelledby="women-ethnic" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Sarees</h3>
+          <a href="#">All Sarees</a>
+          <a href="#">Silk Sarees</a>
+          <a href="#">Cotton Sarees</a>
+          <a href="#">Chiffon Sarees</a>
+          <a href="#">Georgette Sarees</a>
+        </div>
+        <div>
+          <h3>Kurtis</h3>
+          <a href="#">All Kurtis</a>
+          <a href="#">Anarkali Kurtis</a>
+          <a href="#">Long Kurtis</a>
+          <a href="#">Short Kurtis</a>
+          <a href="#">Embroidered Kurtis</a>
+        </div>
+        <div>
+          <h3>Kurta Sets</h3>
+          <a href="#">All Kurta Sets</a>
+          <a href="#">Kurta Palazzo Sets</a>
+          <a href="#">Kurta Pant Sets</a>
+          <a href="#">Kurta Skirt Sets</a>
+        </div>
+        <div>
+          <h3>Dupatta Sets</h3>
+          <a href="#">All Dupatta Sets</a>
+          <a href="#">Cotton Dupattas</a>
+          <a href="#">Silk Dupattas</a>
+        </div>
+        <div>
+          <h3>Suits & Dress Material</h3>
+          <a href="#">All Suits</a>
+          <a href="#">Dress Material</a>
+        </div>
+        <div>
+          <h3>Lehengas</h3>
+          <a href="#">All Lehengas</a>
+          <a href="#">Designer Lehengas</a>
+        </div>
+        <div>
+          <h3>Other Ethnic</h3>
+          <a href="#">Blouses</a>
+          <a href="#">Dupattas</a>
+          <a href="#">Gown</a>
+        </div>
+      </div>
+
+      <!-- Women Western -->
+      <div class="mega-menu" data-category="women-western" role="region" aria-labelledby="women-western" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Tops</h3>
+          <a href="#">All Tops</a>
+          <a href="#">T-Shirts</a>
+          <a href="#">Shirts</a>
+          <a href="#">Blouses</a>
+        </div>
+        <div>
+          <h3>Dresses</h3>
+          <a href="#">All Dresses</a>
+          <a href="#">Casual Dresses</a>
+          <a href="#">Party Dresses</a>
+        </div>
+        <div>
+          <h3>Jeans & Trousers</h3>
+          <a href="#">All Jeans</a>
+          <a href="#">Jeggings</a>
+          <a href="#">Palazzos</a>
+        </div>
+        <div>
+          <h3>Jackets & Shrugs</h3>
+          <a href="#">All Jackets</a>
+          <a href="#">Shrugs</a>
+        </div>
+      </div>
+
+      <!-- Men -->
+      <div class="mega-menu" data-category="men" role="region" aria-labelledby="men" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Topwear</h3>
+          <a href="#">T-Shirts</a>
+          <a href="#">Shirts</a>
+          <a href="#">Sweatshirts</a>
+        </div>
+        <div>
+          <h3>Bottomwear</h3>
+          <a href="#">Jeans</a>
+          <a href="#">Trousers</a>
+          <a href="#">Shorts</a>
+        </div>
+        <div>
+          <h3>Innerwear & Sleepwear</h3>
+          <a href="#">Vests</a>
+          <a href="#">Boxers</a>
+        </div>
+      </div>
+
+      <!-- Kids -->
+      <div class="mega-menu" data-category="kids" role="region" aria-labelledby="kids" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Boys Clothing</h3>
+          <a href="#">T-Shirts</a>
+          <a href="#">Shirts</a>
+          <a href="#">Shorts</a>
+        </div>
+        <div>
+          <h3>Girls Clothing</h3>
+          <a href="#">Dresses</a>
+          <a href="#">Tops</a>
+          <a href="#">Skirts</a>
+        </div>
+        <div>
+          <h3>Infants</h3>
+          <a href="#">Rompers</a>
+          <a href="#">Onesies</a>
+        </div>
+      </div>
+
+      <!-- Home & Kitchen -->
+      <div class="mega-menu" data-category="home-kitchen" role="region" aria-labelledby="home-kitchen" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Kitchen & Dining</h3>
+          <a href="#">Cookware</a>
+          <a href="#">Dinnerware</a>
+          <a href="#">Storage</a>
+        </div>
+        <div>
+          <h3>Home Decor</h3>
+          <a href="#">Wall Decor</a>
+          <a href="#">Clocks</a>
+          <a href="#">Showpieces</a>
+        </div>
+        <div>
+          <h3>Bedding</h3>
+          <a href="#">Bedsheets</a>
+          <a href="#">Blankets</a>
+          <a href="#">Pillows</a>
+        </div>
+      </div>
+
+      <!-- Beauty & Health -->
+      <div class="mega-menu" data-category="beauty-health" role="region" aria-labelledby="beauty-health" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Makeup</h3>
+          <a href="#">Lipsticks</a>
+          <a href="#">Eyeliner</a>
+          <a href="#">Foundation</a>
+        </div>
+        <div>
+          <h3>Skincare</h3>
+          <a href="#">Face Wash</a>
+          <a href="#">Moisturizers</a>
+          <a href="#">Sunscreen</a>
+        </div>
+        <div>
+          <h3>Health & Wellness</h3>
+          <a href="#">Supplements</a>
+          <a href="#">Personal Care</a>
+        </div>
+      </div>
+
+      <!-- Jewellery & Accessories -->
+      <div class="mega-menu" data-category="jewellery-accessories" role="region" aria-labelledby="jewellery-accessories" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Jewellery</h3>
+          <a href="#">Earrings</a>
+          <a href="#">Necklaces</a>
+          <a href="#">Rings</a>
+        </div>
+        <div>
+          <h3>Accessories</h3>
+          <a href="#">Bags</a>
+          <a href="#">Watches</a>
+          <a href="#">Sunglasses</a>
+        </div>
+      </div>
+
+      <!-- Bags & Footwear -->
+      <div class="mega-menu" data-category="bags-footwear" role="region" aria-labelledby="bags-footwear" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Bags</h3>
+          <a href="#">Handbags</a>
+          <a href="#">Backpacks</a>
+          <a href="#">Clutches</a>
+        </div>
+        <div>
+          <h3>Footwear</h3>
+          <a href="#">Flats</a>
+          <a href="#">Heels</a>
+          <a href="#">Sandals</a>
+        </div>
+      </div>
+
+      <!-- Electronics -->
+      <div class="mega-menu" data-category="electronics" role="region" aria-labelledby="electronics" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Mobiles & Accessories</h3>
+          <a href="#">Smartphones</a>
+          <a href="#">Power Banks</a>
+          <a href="#">Chargers</a>
+        </div>
+        <div>
+          <h3>Home Appliances</h3>
+          <a href="#">Irons</a>
+          <a href="#">Mixers</a>
+          <a href="#">Heaters</a>
+        </div>
+        <div>
+          <h3>Audio & Video</h3>
+          <a href="#">Headphones</a>
+          <a href="#">Speakers</a>
+        </div>
+      </div>
+
+      <!-- Sports -->
+      <div class="mega-menu" data-category="sports" role="region" aria-labelledby="sports" style="display:none; position:absolute; left:0; right:0; background:#fff; border-top:3px solid #5a2a6a; box-shadow:0 4px 12px rgb(0 0 0 / 0.1); padding:20px 40px; box-sizing:border-box; z-index:40; font-size:14px; color:#444; flex-wrap: wrap;">
+        <div>
+          <h3>Sportswear</h3>
+          <a href="#">T-Shirts</a>
+          <a href="#">Shorts</a>
+          <a href="#">Tracksuits</a>
+        </div>
+        <div>
+          <h3>Equipment</h3>
+          <a href="#">Cricket</a>
+          <a href="#">Football</a>
+          <a href="#">Badminton</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="banner" aria-label="Promotional banner">
+    <div class="banner-text">
+      <h1>Smart Shopping</h1>
+      <h1>Trusted by Millions</h1>
+      <button class="shop-now-btn" type="button">Shop Now</button>
+    </div>
+    <img src="Banner-1.webp" alt="Banner showing happy man and woman with colorful background" class="banner-img" />
+  </section>
+
+  <section class="features" aria-label="Features">
+    <div class="feature" tabindex="0">
+      <div class="feature-icon">
+        <i class="fa fa-undo"></i>
+      </div>
+      <p>7 Days Easy Return</p>
+    </div>
+    <div class="feature" tabindex="0">
+      <div class="feature-icon">
+        <i class="fa fa-money-bill"></i>
+      </div>
+      <p>Cash on Delivery</p>
+    </div>
+    <div class="feature" tabindex="0">
+      <div class="feature-icon">
+        <i class="fa fa-tags"></i>
+      </div>
+      <p>Lowest Prices</p>
+    </div>
+  </section>
+
+<!-- Komal Bhalerao And Yogesh Mungase Contribution -->
+
+
+
+
+
+
+
+
+<!-- Pandurang Bade And Ajay Unawane Contribution -->
+
+
+
+
+
+
+ <script src="script.js"></script>
+</body>
+
+</html>
