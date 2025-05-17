@@ -438,7 +438,151 @@
 
  /* ============== Komal Bhalerao And Yogesh Mungase Contribution ================= */
 
+/* Gallery Container */
+.gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+  justify-content: center;
+  margin-bottom: 20px;
+  scroll-snap-type: x mandatory;
+}
 
+.gallery div {
+  scroll-snap-align: start;
+}
+
+/* Gallery Images */
+.gallery img {
+  height: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+/* Hover Effect */
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+  text-align: center;
+}
+
+.modal:target {
+  display: block;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 80%;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.modal p {
+  margin-top: 15px;
+  color: #ccc;
+  font-size: 18px;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 30px;
+  right: 45px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Banner Section */
+.banner1 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.banner1 {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust as needed */
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content1 {
+  position: absolute;
+  top: 80%;
+  left: 10%;
+  color: white;
+  z-index: 10;
+}
+
+.content1 button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(58.44, 30.20, 41.53);
+  color: white;
+  border: 2px solid rgb(210, 209, 202);
+  cursor: pointer;
+}
+
+.categories1 {
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.category1 {
+  text-align: center;
+  color: white;
+}
+
+.category1 img {
+  width: 100px;
+  height: 120px;
+  padding: 10px;
+  transition: transform 0.3s;
+}
+
+.category1 p {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.category1 img:hover {
+  transform: scale(1.05);
+}
 
 
 
@@ -832,6 +976,35 @@ footer .social-icons img {
      .category-nav:not(.mobile-nav .category-nav) {
          display: none;
      }
+   
+   .gallery img {
+    height: 100px;
+  }
+
+  .close {
+    font-size: 30px;
+    top: 15px;
+    right: 25px;
+  }
+
+  .banner1 {
+    height: auto;
+  }
+
+  .content1 {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .categories1 {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
  }
 
  /* Small Mobile Devices (up to 480px) */
