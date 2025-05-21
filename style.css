@@ -438,220 +438,346 @@
 
  /* ============== Komal Bhalerao And Yogesh Mungase Contribution ================= */
 
-/* Gallery Container */
-.gallery {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 20px 0;
-    scroll-behavior: smooth;
-    justify-content: center;
-    margin-bottom: 20px;
-    scroll-snap-type: x mandatory;
-}
+ /* Gallery Container */
+ .gallery {
+     display: flex;
+     overflow-x: auto;
+     gap: 20px;
+     padding: 20px 0;
+     scroll-behavior: smooth;
+     justify-content: center;
+     margin-bottom: 20px;
+     scroll-snap-type: x mandatory;
+ }
 
-.gallery div {
-    scroll-snap-align: start;
-}
+ .gallery div {
+     scroll-snap-align: start;
+ }
 
-/* Gallery Images */
-.gallery img {
-    height: 150px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
+ /* Gallery Images */
+ .gallery img {
+     height: 150px;
+     border-radius: 10px;
+     cursor: pointer;
+     transition: transform 0.3s;
+ }
 
-/* Hover Effect */
-.gallery img:hover {
-    transform: scale(1.05);
-}
+ /* Hover Effect */
+ .gallery img:hover {
+     transform: scale(1.05);
+ }
 
-/* Modal Styling */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    padding-top: 60px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9);
-    text-align: center;
-}
+ /* Modal Styling */
+ .modal {
+     display: none;
+     position: fixed;
+     z-index: 1000;
+     padding-top: 60px;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgba(0, 0, 0, 0.9);
+     text-align: center;
+ }
 
-.modal:target {
-    display: block;
-}
+ .modal:target {
+     display: block;
+ }
 
-.modal img {
-    max-width: 90%;
-    max-height: 80%;
-    margin-top: 20px;
-    border-radius: 10px;
-}
+ .modal img {
+     max-width: 90%;
+     max-height: 80%;
+     margin-top: 20px;
+     border-radius: 10px;
+ }
 
-.modal p {
-    margin-top: 15px;
-    color: #ccc;
+ .modal p {
+     margin-top: 15px;
+     color: #ccc;
+     font-size: 18px;
+ }
+
+ /* Close Button */
+ .close {
+     position: absolute;
+     top: 30px;
+     right: 45px;
+     color: #fff;
+     font-size: 40px;
+     font-weight: bold;
+     text-decoration: none;
+ }
+
+ /* Banner Section */
+ .banner1 {
+     position: relative;
+     width: 100%;
+     height: 400px;
+     overflow: hidden;
+ }
+
+ .banner-img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: block;
+ }
+
+ .content1 {
+     position: absolute;
+     top: 80%;
+     left: 10%;
+     color: white;
+     z-index: 10;
+ }
+
+ .content1 button {
+     margin: 20px 40px;
+     padding: 10px 20px;
+     font-size: 16px;
+     background-color: rgba(0, 0, 0, 0.15);
+     ;
+     color: white;
+     border: 0.5px solid gold;
+     cursor: pointer;
+ }
+
+ /* Categories grid on right side, foreground of banner */
+ .categories1 {
+     position: absolute;
+     top: 50%;
+     right: 5%;
+     transform: translateY(-50%);
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     grid-template-rows: repeat(2, 1fr);
+     gap: 20px 24px;
+     z-index: 11;
+     background: rgba(255, 255, 255, 0.05);
+     /* subtle overlay, optional */
+     padding: 8px 0;
+     /* align to right half */
+     justify-items: center;
+     align-items: center;
+ }
+
+ .category1 {
+     text-align: center;
+     color: white;
+ }
+
+ .category1 img {
+     width: 100px;
+     height: 120px;
+     padding: 10px;
+     transition: transform 0.3s;
+     background: rgba(0, 0, 0, 0.15);
+     /* optional for contrast */
+     border-radius: 10px;
+ }
+
+ .category1 p {
+     margin-top: 5px;
+     font-weight: bold;
+ }
+
+ .category1 img:hover {
+     transform: scale(1.05);
+ }
+
+ /* Tablet View (768px - 1024px): scale gallery, banner1, categories1, content1 proportionally */
+ @media (max-width: 1024px) and (min-width: 768px) {
+     .gallery img {
+         height: 120px;
+     }
+
+     .gallery {
+         gap: 14px;
+         padding: 16px 0;
+     }
+
+     .banner1 {
+         height: 280px;
+     }
+
+     .content1 {
+         top: 78%;
+         left: 7%;
+     }
+
+     .content1 button {
+         padding: 8px 16px;
+         font-size: 14px;
+     }
+
+     .categories1 {
+         gap: 14px 16px;
+         right: 3%;
+     }
+
+     .category1 img {
+         width: 70px;
+         height: 90px;
+         padding: 6px;
+     }
+
+     .modal img {
+         max-width: 95%;
+         max-height: 70%;
+     }
+
+     .modal p {
+         font-size: 15px;
+     }
+ }
+
+ /* Mobile View (up to 767px): only gallery visible, horizontal scroll */
+ @media (max-width: 767px) {
+     .gallery {
+         display: flex;
+         overflow-x: auto;
+         gap: 10px;
+         padding: 12px 0;
+         margin-bottom: 10px;
+         scroll-snap-type: x mandatory;
+         justify-content: flex-start;
+         width: 100vw;
+         max-width: 100vw;
+     }
+
+     .gallery img {
+         height: 90px;
+         min-width: 120px;
+         border-radius: 8px;
+     }
+
+     .gallery div {
+         scroll-snap-align: start;
+     }
+
+     /* Hide everything except gallery */
+     .banner1,
+     .content1,
+     .categories1,
+     .modal {
+         display: none !important;
+     }
+ }
+
+
+ /* Product Section */
+
+
+
+ .product-suggestion {
+     background-color: white;
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+     text-align: center;
+     height: 30px;
+     min-width: 100px;
+     max-width: fit-content;
+     border-bottom: 1px solid black;
+ }
+
+ .product-suggestion select {
+     width: 100%;
+ }
+
+ /* 
+label {
     font-size: 18px;
-}
-
-/* Close Button */
-.close {
-    position: absolute;
-    top: 30px;
-    right: 45px;
-    color: #fff;
-    font-size: 40px;
     font-weight: bold;
-    text-decoration: none;
-}
-
-/* Banner Section */
-.banner1 {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-}
-
-.banner-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    margin-bottom: 10px;
     display: block;
 }
 
-.content1 {
-    position: absolute;
-    top: 80%;
-    left: 10%;
-    color: white;
-    z-index: 10;
-}
-
-.content1 button {
-    margin: 20px 40px;
-    padding: 10px 20px;
+select {
+    width: 200px;
+    padding: 8px;
     font-size: 16px;
-    background-color: rgba(0,0,0,0.15);;
-    color: white;
-    border: 0.5px solid gold;
+    border-radius: 5px;
+    border: 1px solid #ccc;
     cursor: pointer;
-}
+} */
+ .card {
+     width: 222px;
+     height: 380px;
+     border: 1px solid black;
+     display: inline-block;
+     margin: 0;
+     border-radius: 0px;
+     box-shadow: 0 0px rgba(79, 71, 71, 0.856);
+     transition: 1s;
+     background-color: rgb(223, 236, 247);
+ }
 
-/* Categories grid on right side, foreground of banner */
-.categories1 {
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translateY(-50%);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px 24px;
-    z-index: 11;
-    background: rgba(255,255,255,0.05); /* subtle overlay, optional */
-    padding: 8px 0;
-    /* align to right half */
-    justify-items: center;
-    align-items: center;
-}
+ .desk {
+     padding: 0 0 0 0;
+     background-color: rgb(223, 236, 247);
+     /* padding-left: 100px; */
 
-.category1 {
-    text-align: center;
-    color: white;
-}
+ }
 
-.category1 img {
-    width: 100px;
-    height: 120px;
-    padding: 10px;
-    transition: transform 0.3s;
-    background: rgba(0,0,0,0.15); /* optional for contrast */
-    border-radius: 10px;
-}
+ .desk p {
+     padding-left: 20px;
+     padding-top: 0;
+     padding-bottom: 0;
+     /* text-align: center; */
+ }
 
-.category1 p {
-    margin-top: 5px;
-    font-weight: bold;
-}
+ .desk h4 {
+     padding: 0 0 0 20px;
+ }
 
-.category1 img:hover {
-    transform: scale(1.05);
-}
+ #myoffer {
+     color: green;
+ }
 
-/* Tablet View (768px - 1024px): scale gallery, banner1, categories1, content1 proportionally */
-@media (max-width: 1024px) and (min-width: 768px) {
-    .gallery img {
-        height: 120px;
-    }
-    .gallery {
-        gap: 14px;
-        padding: 16px 0;
-    }
-    .banner1 {
-        height: 280px;
-    }
-    .content1 {
-        top: 78%;
-        left: 7%;
-    }
-    .content1 button {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-    .categories1 {
-        gap: 14px 16px;
-        right: 3%;
-    }
-    .category1 img {
-        width: 70px;
-        height: 90px;
-        padding: 6px;
-    }
-    .modal img {
-        max-width: 95%;
-        max-height: 70%;
-    }
-    .modal p {
-        font-size: 15px;
-    }
-}
+ #freedelivery {
+     text-size: 0px;
+ }
 
-/* Mobile View (up to 767px): only gallery visible, horizontal scroll */
-@media (max-width: 767px) {
-    .gallery {
-        display: flex;
-        overflow-x: auto;
-        gap: 10px;
-        padding: 12px 0;
-        margin-bottom: 10px;
-        scroll-snap-type: x mandatory;
-        justify-content: flex-start;
-        width: 100vw;
-        max-width: 100vw;
-    }
-    .gallery img {
-        height: 90px;
-        min-width: 120px;
-        border-radius: 8px;
-    }
-    .gallery div {
-        scroll-snap-align: start;
-    }
-    /* Hide everything except gallery */
-    .banner1,
-    .content1,
-    .categories1,
-    .modal {
-        display: none !important;
-    }
-}
+ #rating {
+     background-color: rgb(40, 205, 40);
+     border-radius: 30%;
+     nav-right: current;
+ }
 
+ img {
+     height: 230px;
+     width: 100%;
+     border-radius: 5px 5px 0 0;
+ }
+
+ .card:hover {
+     box-shadow: 0 8px 16px rgb(23, 22, 22);
+ }
+
+ .sec1 {
+     background-color: rgb(243, 248, 248);
+     display: flex;
+     /* flex-wrap: wrap; */
+ }
+
+ .child1 {
+     min-width: 260px;
+     max-width: 280px;
+ }
+
+ .child2 {
+     margin: 0 0 0 0;
+ }
+
+ @media(max-width:1000px) {
+     .sec1 {
+         flex-wrap: wrap;
+     }
+
+ }
 
 
 
