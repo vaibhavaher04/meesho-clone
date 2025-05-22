@@ -1,0 +1,96 @@
+
+
+.product-suggestion {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 30px;
+    min-width: 100px;
+    max-width: fit-content;
+    border-bottom: 1px solid black;
+}
+.product-suggestion select{
+    width: 100%;
+}
+/* 
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+select {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+} */
+.card{
+    width: 222px;
+    height: 380px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 0;
+    border-radius: 0px;
+    box-shadow: 0 0px rgba(79, 71, 71, 0.856);
+    transition: 1s;
+ background-color: rgb(223, 236, 247);
+}
+
+.desk{
+    padding: 0 0 0 0;
+    background-color: rgb(223, 236, 247);
+    /* padding-left: 100px; */
+
+}
+.desk p{
+    padding-left: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+    /* text-align: center; */
+}
+.desk h4{
+    padding: 0 0 0 20px;
+}
+#myoffer{
+    color:green;
+}
+#freedelivery{
+    text-size: 0px;
+}
+#rating{
+    background-color: rgb(40, 205, 40);
+    border-radius: 30%;
+ nav-right: current;
+}
+img {
+    height: 230px;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+.card:hover{
+    box-shadow: 0 8px 16px rgb(23, 22, 22);
+}
+.sec1{
+    background-color: rgb(243, 248, 248);
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+.child1{
+min-width:260px;
+max-width: 280px;
+}
+.child2{
+    margin:0 0 0 0;
+}
+@media(max-width:1000px) {
+    .sec1{
+        flex-wrap: wrap;
+    }
+
+}
