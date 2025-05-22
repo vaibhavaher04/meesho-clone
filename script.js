@@ -628,31 +628,29 @@ function loadMoreProducts() {
 function filterProducts() {
     return products.filter(product => {
         // Category filter
-        if (!activeFilters.categories.includes(product.category)) {
-            return false;
-        }
-
+        const categoryMatch = activeFilters.categories.length === 0 || 
+                            activeFilters.categories.includes(product.category);
+        
         // Price filter
-        if (product.price < activeFilters.minPrice || product.price > activeFilters.maxPrice) {
-            return false;
+        const priceMatch = product.price >= activeFilters.minPrice && 
+                         product.price <= activeFilters.maxPrice;
+        
+        // Rating filter (products with rating >= selected minimum)
+        const ratingMatch = product.rating >= activeFilters.minRating;
+        
+        // Delivery filters (OR logic - show if either matches or none selected)
+        let deliveryMatch = true;
+        if (activeFilters.freeDelivery || activeFilters.expressDelivery) {
+            deliveryMatch = false;
+            if (activeFilters.freeDelivery && product.delivery.includes('Free')) {
+                deliveryMatch = true;
+            }
+            if (activeFilters.expressDelivery && product.delivery.includes('Express')) {
+                deliveryMatch = true;
+            }
         }
-
-        // Rating filter
-        if (product.rating < activeFilters.minRating) {
-            return false;
-        }
-
-        // Delivery filters
-        if (activeFilters.freeDelivery && !product.delivery.includes('Free')) {
-            return false;
-        }
-
-        // Express delivery filter (would need data in the products)
-        // if (activeFilters.expressDelivery && !product.delivery.includes('Express')) {
-        //     return false;
-        // }
-
-        return true;
+        
+        return categoryMatch && priceMatch && ratingMatch && deliveryMatch;
     });
 }
 
@@ -753,22 +751,25 @@ function applyFilters() {
     // Get category filters
     const categoryCheckboxes = document.querySelectorAll('input[name="category"]:checked');
     activeFilters.categories = Array.from(categoryCheckboxes).map(cb => cb.value);
+    
+    // If no categories are selected, show all categories
+    if (activeFilters.categories.length === 0) {
+        const allCategories = document.querySelectorAll('input[name="category"]');
+        activeFilters.categories = Array.from(allCategories).map(cb => cb.value);
+    }
 
     // Get price range
     activeFilters.minPrice = parseInt(document.getElementById('min-price')?.value) || 0;
     activeFilters.maxPrice = parseInt(document.getElementById('max-price')?.value) || 5000;
 
-    // Get minimum rating
+    // Get minimum rating (show products AT OR ABOVE selected rating)
     const ratingCheckboxes = document.querySelectorAll('input[name="rating"]:checked');
     const ratingValues = Array.from(ratingCheckboxes).map(cb => parseInt(cb.value));
-    activeFilters.minRating = ratingValues.length > 0 ? Math.min(...ratingValues) : 0;
+    activeFilters.minRating = ratingValues.length > 0 ? Math.max(...ratingValues) : 0;
 
-    // Get delivery options
-    const freeDeliveryCheckbox = document.getElementById('free-delivery');
-    const expressDeliveryCheckbox = document.getElementById('express-delivery');
-
-    activeFilters.freeDelivery = freeDeliveryCheckbox ? freeDeliveryCheckbox.checked : true;
-    activeFilters.expressDelivery = expressDeliveryCheckbox ? expressDeliveryCheckbox.checked : true;
+    // Get delivery options (independent options)
+    activeFilters.freeDelivery = document.getElementById('free-delivery')?.checked || false;
+    activeFilters.expressDelivery = document.getElementById('express-delivery')?.checked || false;
 
     // Reset pagination
     currentPage = 1;
@@ -782,9 +783,9 @@ function applyFilters() {
 
 // Clear all filters
 function clearFilters() {
-    // Check all category checkboxes
+    // Uncheck all category checkboxes
     document.querySelectorAll('input[name="category"]').forEach(cb => {
-        cb.checked = true;
+        cb.checked = false;
     });
 
     // Reset price range
@@ -794,29 +795,29 @@ function clearFilters() {
     if (minPriceInput) minPriceInput.value = 0;
     if (maxPriceInput) maxPriceInput.value = 5000;
 
-    // Check all rating checkboxes
+    // Uncheck all rating checkboxes
     document.querySelectorAll('input[name="rating"]').forEach(cb => {
-        cb.checked = true;
+        cb.checked = false;
     });
 
-    // Check all delivery options
+    // Uncheck delivery options
     const freeDeliveryCheckbox = document.getElementById('free-delivery');
     const expressDeliveryCheckbox = document.getElementById('express-delivery');
 
-    if (freeDeliveryCheckbox) freeDeliveryCheckbox.checked = true;
-    if (expressDeliveryCheckbox) expressDeliveryCheckbox.checked = true;
+    if (freeDeliveryCheckbox) freeDeliveryCheckbox.checked = false;
+    if (expressDeliveryCheckbox) expressDeliveryCheckbox.checked = false;
 
     // Reset sort select
     if (sortSelect) sortSelect.value = 'relevance';
 
-    // Reset active filters
+    // Reset active filters to show all products
     activeFilters = {
-        categories: ['fashion', 'electronics', 'home', 'beauty'],
+        categories: [], // Will be populated in applyFilters when none selected
         minPrice: 0,
         maxPrice: 5000,
         minRating: 0,
-        freeDelivery: true,
-        expressDelivery: true,
+        freeDelivery: false,
+        expressDelivery: false,
         sort: 'relevance'
     };
 
@@ -1369,4 +1370,76 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("3. Include this JavaScript file");
         console.log("4. Click on any product to see the popup");
     }
+});
+
+// Top Brands Section
+
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.brands-track');
+    const scroller = document.querySelector('.brands-scroller');
+    const leftBtn = document.querySelector('.left-scroll-btn');
+    const rightBtn = document.querySelector('.right-scroll-btn');
+    const brandCards = document.querySelectorAll('.brand-card');
+    
+    let currentPosition = 0;
+    const cardWidth = 150; // Should match your CSS min-width for brand-card
+    const gap = 20; // Should match your gap in CSS
+    let visibleCards;
+    
+    function calculateVisibleCards() {
+        const containerWidth = scroller.offsetWidth;
+        visibleCards = Math.floor(containerWidth / (cardWidth + gap));
+    }
+    
+    function updateButtons() {
+        const maxScroll = track.scrollWidth - scroller.offsetWidth;
+        
+        leftBtn.style.display = currentPosition <= 0 ? 'none' : 'flex';
+        rightBtn.style.display = currentPosition >= maxScroll ? 'none' : 'flex';
+    }
+    
+    function scrollToPosition(position) {
+        track.style.transform = `translateX(-${position}px)`;
+        currentPosition = position;
+        updateButtons();
+    }
+    
+    function scrollLeft() {
+        calculateVisibleCards();
+        const scrollAmount = (cardWidth + gap) * visibleCards;
+        const newPosition = Math.max(0, currentPosition - scrollAmount);
+        scrollToPosition(newPosition);
+    }
+    
+    function scrollRight() {
+        calculateVisibleCards();
+        const scrollAmount = (cardWidth + gap) * visibleCards;
+        const maxScroll = track.scrollWidth - scroller.offsetWidth;
+        const newPosition = Math.min(maxScroll, currentPosition + scrollAmount);
+        scrollToPosition(newPosition);
+    }
+    
+    // Initialize
+    calculateVisibleCards();
+    updateButtons();
+    
+    // Event Listeners
+    leftBtn.addEventListener('click', scrollLeft);
+    rightBtn.addEventListener('click', scrollRight);
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        calculateVisibleCards();
+        updateButtons();
+    });
+    
+    // Add click event to brand cards
+    brandCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const brandName = this.querySelector('.brand-name').textContent;
+            alert(`You clicked on ${brandName}! This would navigate to their products.`);
+            // In a real implementation, you would navigate to the brand's page
+            // window.location.href = `/brands/${brandName.toLowerCase()}`;
+        });
+    });
 });
